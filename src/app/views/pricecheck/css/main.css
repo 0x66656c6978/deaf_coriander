@@ -9,20 +9,20 @@ body {
     display: flex;
 }
 
-.item {
+.item,.currency-item {
     display: flex;
     flex-direction: column;
 }
 
-.item--header {
+.item-header {
     display: flex;
 }
 
-.item--name {
+.item-name {
     font-size: 14pt;
 }
 
-.item--value {
+.item-value {
     font-size: 24pt;
 }
 

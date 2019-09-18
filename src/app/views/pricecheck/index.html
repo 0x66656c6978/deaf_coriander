@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>poe.ninja Price Check Helper</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="../view.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="price-check">
-      <div class="item">
-        <div class="item--header">
-            <img class="item--icon" id="item-icon" height="32">
-            <div class="item--name" id="item-name"></div>
+        <div class="item">
+            <div class="item-header">
+                <img class="item-icon" id="item-icon" height="32">
+                <span class="item-name" id="item-name"></span>
+            </div>
+            <div class="item-body">
+                <div class="item-value">
+                    <span class="item-chaos-value" id="chaos-value"></span>
+                    <span>C</span>
+                </div>
+                <div class="item-variant">
+                    <span id="item-variant"></span>
+                </div>
+                <div class="item-required-level">
+                    <span id="item-required-level"></span>
+                </div>
+            </div>
         </div>
-        <div class="item--body">
-          <div class="item--value">
-            <span class="item--chaos-value" id="chaos-value"></span>
-            <span>C</span>
-          </div>
+        <div class="currency-item">
+            <div class="item-header">
+                <img class="item-icon" id="currency-item-icon" height="32">
+                <span class="item-name" id="currency-item-name"></span>
+            </div>
+            <div class="item-body">
+                <div class="pay">
+                    <span>You will pay <span class="currency-item-price-pay"></span> items for 1 chaos</span>
+                </div>
+                <div class="receive">
+                    <span>You will receive <span class="currency-item-price-receive"></span> chaos for 1 item</span>
+                </div>
+                <div class="item-variant">
+                    <span id="item-variant"></span>
+                </div>
+                <div class="item-required-level">
+                    <span id="item-required-level"></span>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="item-not-found">
+            <h3>Item not found on poe.ninja</h3>
+            <p>Might just be a bug</p>
+        </div>
     </div>
     <div class="debug-panel">
-      <button id="show-debug-info">Toggle Debug Information</button>
-      <pre id="dump" style="display:none"></pre>
+        <pre id="dump"></pre>
     </div>
-    <script>window.fasfaf = 'foofoo'</script>
     <script src="./js/main.js"></script>
-  </body>
+</body>
+
 </html>

@@ -17,8 +17,7 @@ const isWindowActive = () => {
         windowHandle = Winhook.FindWindow(windowTitle);
         if (!windowHandle) {
             return false;
-        }hg
-
+        }
     }
     return Winhook.GetForegroundWindow() === windowHandle;
 }

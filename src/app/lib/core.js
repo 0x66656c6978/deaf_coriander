@@ -58,7 +58,7 @@ const createView = (viewName, browserWindowOptions = {}, startMinimized = true) 
     const view = views[viewName] = new BrowserWindow({
         width: 400,
         height: 250,
-        frame: false,
+        // frame: false,
         ...browserWindowOptions,
         webPreferences: {
             preload: path.join(viewPath, 'bridge.js'),
@@ -71,6 +71,7 @@ const createView = (viewName, browserWindowOptions = {}, startMinimized = true) 
         hybernate()
     })
     view.loadFile(path.join(viewPath, viewName, 'index.html'))
+    return view
 }
 
 const start = () => {
@@ -82,6 +83,6 @@ const start = () => {
     ])
     tray.setToolTip('deaf_coriander')
     tray.setContextMenu(contextMenu)
-    createView('pricecheck')
+    createView('pricecheck').openDevTools()
     createView('options')
 }
