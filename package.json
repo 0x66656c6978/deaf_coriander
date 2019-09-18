@@ -1,0 +1,28 @@
+{
+  "name": "coriander_tool",
+  "version": "1.0.0",
+  "description": "coriander_tool",
+  "main": "./dist/app/main.js",
+  "scripts": {
+    "start": "electron --inspect=5858 ./dist/app/main.js",
+    "build": "babel --copy-files src -d dist",
+    "build-watch": "babel --watch --verbose --copy-files src -d dist",
+    "package": "electron-packager ./dist/app poeninja-client --overwrite"
+  },
+  "repository": "https://github.com/0x66656c6978/coriander_tool",
+  "keywords": [],
+  "author": "0x66656c6978",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "electron": "^6.0.9",
+    "electron-packager": "^14.0.6"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "node-fetch": "^2.6.0",
+    "winhookjs": "0x66656c6978/winhookjs#master"
+  }
+}

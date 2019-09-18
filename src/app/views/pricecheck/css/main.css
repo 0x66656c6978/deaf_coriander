@@ -1,0 +1,31 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+.price-check {
+    display: flex;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.item--header {
+    display: flex;
+}
+
+.item--name {
+    font-size: 14pt;
+}
+
+.item--value {
+    font-size: 24pt;
+}
+
+.hidden {
+    display: none;
+}
