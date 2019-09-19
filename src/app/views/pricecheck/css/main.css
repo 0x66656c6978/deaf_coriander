@@ -5,11 +5,12 @@ body {
     flex-direction: column;
 }
 
-.price-check {
+.item-list {
     display: flex;
+    flex-wrap: wrap;
 }
 
-.item,.currency-item {
+.item, .currency-item {
     display: flex;
     flex-direction: column;
 }
@@ -22,8 +23,12 @@ body {
     font-size: 14pt;
 }
 
-.item-value {
+.item-value-container {
     font-size: 24pt;
+}
+
+.matching-item-level {
+    border: #00AA00 1px solid;
 }
 
 .hidden {

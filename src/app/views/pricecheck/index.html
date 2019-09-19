@@ -8,54 +8,43 @@
     <link href="../view.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="price-check">
-        <div class="item">
-            <div class="item-header">
-                <img class="item-icon" id="item-icon" height="32">
-                <span class="item-name" id="item-name"></span>
+    <div class="item-list"></div>
+    <div class="templates hidden">
+        <div class="item-template">
+            <div class="header">
+                <img class="icon" height="32">
+                <span class="name"></span>
             </div>
-            <div class="item-body">
-                <div class="item-value">
-                    <span class="item-chaos-value" id="chaos-value"></span>
+            <div class="body">
+                <div class="value-container">
+                    <span class="chaos-value"></span>
                     <span>C</span>
                 </div>
-                <div class="item-variant">
-                    <span id="item-variant"></span>
+                <div>Variant: <span class="variant"></span></div>
+                <div>Required Level: <span class="required-level"></span></div>
+                <div>Links: <span class="num-links">0</span></div>
+                <div>Confidence: <span class="confidence"></span></div>
+            </div>
+        </div>
+        <div class="currency-item-template">
+            <div class="header">
+                <img class="icon" height="32">
+                <span class="name"></span>
+            </div>
+            <div class="body">
+                <div>
+                    <span>You will pay <span class="pay"></span> items for 1 chaos</span>
                 </div>
-                <div class="item-required-level">
-                    <span id="item-required-level"></span>
+                <div>
+                    <span>You will receive <span class="receive"></span> chaos for 1 item</span>
                 </div>
             </div>
         </div>
-        <div class="currency-item">
-            <div class="item-header">
-                <img class="item-icon" id="currency-item-icon" height="32">
-                <span class="item-name" id="currency-item-name"></span>
-            </div>
-            <div class="item-body">
-                <div class="pay">
-                    <span>You will pay <span class="currency-item-price-pay"></span> items for 1 chaos</span>
-                </div>
-                <div class="receive">
-                    <span>You will receive <span class="currency-item-price-receive"></span> chaos for 1 item</span>
-                </div>
-                <div class="item-variant">
-                    <span id="item-variant"></span>
-                </div>
-                <div class="item-required-level">
-                    <span id="item-required-level"></span>
-                </div>
-            </div>
-        </div>
-        <div class="item-not-found">
+        <div class="item-not-found-template">
             <h3>Item not found on poe.ninja</h3>
             <p>Might just be a bug</p>
         </div>
-    </div>
-    <div class="debug-panel">
-        <pre id="dump"></pre>
     </div>
     <script src="./js/main.js"></script>
 </body>

@@ -78,11 +78,7 @@ const evaluateClipboard = () => {
         numLinks = highestLinks
     }
         
-    let poeNinjaItem = null
-    // whether the item is from the itemoverview or the currencyoverview
-    // endpoint as these have different fields available
-    let isCurrencyItem = false
-    
+    let poeNinjaItems = []
     const isSameName = v => v.name === baseType
     const isSameBaseType = v => v.baseType === baseType
     const isSameCurrency = v => v.currencyTypeName === baseType
@@ -105,113 +101,108 @@ const evaluateClipboard = () => {
     }
 
     const findInSegment = (segment, predicate) => {
-        const v = DataSegments[segment].find(predicate)
+        const v = DataSegments[segment].filter(predicate)
         console.log(`Searching segment ${segment}: ${v ? 'found' : 'not found'}`)
         return v
     }
 
     if (rarity === Rarity.Unique) {
         console.time('findInSegment(UniqueAccessory)')
-        poeNinjaItem = findInSegment('UniqueAccessory', isSameUnique)
+        poeNinjaItems = findInSegment('UniqueAccessory', isSameUnique)
         console.timeEnd('findInSegment(UniqueAccessory)')
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(UniqueArmour)')
-            poeNinjaItem = findInSegment('UniqueArmour', isSameUnique)
+            poeNinjaItems = findInSegment('UniqueArmour', isSameUnique)
             console.timeEnd('findInSegment(UniqueArmour)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(UniqueFlask)')
-            poeNinjaItem = findInSegment('UniqueFlask', isSameUnique)
+            poeNinjaItems = findInSegment('UniqueFlask', isSameUnique)
             console.timeEnd('findInSegment(UniqueFlask)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(UniqueJewel)')
-            poeNinjaItem = findInSegment('UniqueJewel', isSameUnique)
+            poeNinjaItems = findInSegment('UniqueJewel', isSameUnique)
             console.timeEnd('findInSegment(UniqueJewel)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(UniqueMap)')
-            poeNinjaItem = findInSegment('UniqueMap', isSameUnique)
+            poeNinjaItems = findInSegment('UniqueMap', isSameUnique)
             console.timeEnd('findInSegment(UniqueMap)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(UniqueWeapon)')
-            poeNinjaItem = findInSegment('UniqueWeapon', isSameUnique)
+            poeNinjaItems = findInSegment('UniqueWeapon', isSameUnique)
             console.timeEnd('findInSegment(UniqueWeapon)')
         }
         // done
     } else if (rarity === Rarity.Currency) {
         console.time('findInSegment(Currency)')
-        poeNinjaItem = findInSegment('Currency', isSameCurrency)
+        poeNinjaItems = findInSegment('Currency', isSameCurrency)
         console.timeEnd('findInSegment(Currency)')
-        isCurrencyItem = true
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Essence)')
-            poeNinjaItem = findInSegment('Essence', isSameName)
+            poeNinjaItems = findInSegment('Essence', isSameName)
             console.timeEnd('findInSegment(Essence)')
-            isCurrencyItem = false
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Fossil)')
-            poeNinjaItem = findInSegment('Fossil', isSameName)
+            poeNinjaItems = findInSegment('Fossil', isSameName)
             console.timeEnd('findInSegment(Fossil)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Resonator)')
-            poeNinjaItem = findInSegment('Resonator', isSameName)
+            poeNinjaItems = findInSegment('Resonator', isSameName)
             console.timeEnd('findInSegment(Resonator)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Oil)')
-            poeNinjaItem = findInSegment('Oil', isSameBaseType)
+            poeNinjaItems = findInSegment('Oil', isSameBaseType)
             console.timeEnd('findInSegment(Oil)')
         }
     } else if (rarity === Rarity.DivCard) {
         console.time('findInSegment(DivinationCard)')
-        poeNinjaItem = findInSegment('DivinationCard', isSameName)
+        poeNinjaItems = findInSegment('DivinationCard', isSameName)
         console.timeEnd('findInSegment(DivinationCard)')
         // done
     } else if (rarity === Rarity.Gem) {
         throw new Error('Gems not implemented yet')
     } else {
         console.time('findInSegment(Fragment)')
-        poeNinjaItem = findInSegment('Fragment', isSameName)
+        poeNinjaItems = findInSegment('Fragment', isSameName)
         console.timeEnd('findInSegment(Fragment)')
-        isCurrencyItem = true
-        if (!poeNinjaItem) {
-            isCurrencyItem = false
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Incubator)')
-            poeNinjaItem = findInSegment('Incubator', isSameName)
+            poeNinjaItems = findInSegment('Incubator', isSameName)
             console.timeEnd('findInSegment(Incubator)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Prophecy)')
-            poeNinjaItem = findInSegment('Prophecy', isSameName)
+            poeNinjaItems = findInSegment('Prophecy', isSameName)
             console.timeEnd('findInSegment(Prophecy)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Scarab)')
-            poeNinjaItem = findInSegment('Scarab', isSameName)
+            poeNinjaItems = findInSegment('Scarab', isSameName)
             console.timeEnd('findInSegment(Scarab)')
         }
-        if (!poeNinjaItem) {
+        if (!poeNinjaItems.length) {
             console.time('findInSegment(Map)')
-            poeNinjaItem = findInSegment('Map', isSameBaseType)
+            poeNinjaItems = findInSegment('Map', isSameBaseType)
             console.timeEnd('findInSegment(Map)')
         }
-        if (!poeNinjaItem) {            
+        if (!poeNinjaItems.length) {            
             if (!isNaN(itemLevel)) {
                 const sortLevelDesc = (a,b) => b.levelRequired - a.levelRequired
                 console.time('DataSegments.BaseType.filter(isSameVariant)')
-                let candidates = DataSegments.BaseType.filter(isSameVariant)
+                poeNinjaItems = DataSegments.BaseType.filter(isSameVariant)
                 console.timeEnd('DataSegments.BaseType.filter(isSameVariant)')
-                console.time('candidates.sort(sortLevelDesc)')
-                candidates = candidates.sort(sortLevelDesc);
-                console.timeEnd('candidates.sort(sortLevelDesc)')
-                console.log({ candidates });
-                console.time('candidates.find(v => v.levelRequired <= itemLevel)')
-                poeNinjaItem = candidates.find(v => v.levelRequired <= itemLevel)
-                console.timeEnd('candidates.find(v => v.levelRequired <= itemLevel)')
+                console.time('poeNinjaItems.sort(sortLevelDesc)')
+                poeNinjaItems = poeNinjaItems.sort(sortLevelDesc);
+                console.timeEnd('poeNinjaItems.sort(sortLevelDesc)')
+                // console.time('candidates.find(v => v.levelRequired <= itemLevel)')
+                // poeNinjaItems = candidates.find(v => v.levelRequired <= itemLevel)
+                // console.timeEnd('candidates.find(v => v.levelRequired <= itemLevel)')
             } else {
                 throw new Error('Item is probably BaseType but could not figure out the item level')
             }
@@ -222,9 +213,9 @@ const evaluateClipboard = () => {
         rarity,
         baseType,
         itemName,
+        itemLevel,
         variant,
-        isCurrencyItem,
-        item: poeNinjaItem
+        items: poeNinjaItems
     }
 };
 
@@ -260,7 +251,7 @@ const doPriceCheck = (options = {}) => new Promise((resolve, reject) => {
     console.time('setTimeout(clipboardCopyWaitTime)')
     wasteCpuCyclesForMilliseconds(clipboardCopyWaitTime)
     console.timeEnd('setTimeout(clipboardCopyWaitTime)')
-    
+
     try {
         console.time('resolve(evaluateClipboard())')
         resolve(evaluateClipboard())
@@ -271,75 +262,105 @@ const doPriceCheck = (options = {}) => new Promise((resolve, reject) => {
 })
 
 const handlePriceCheckFinished = data => {
-    const {
-        item,
-        isCurrencyItem
-    } = data;
+    const { items, itemLevel } = data;
 
     console.time('positionViewAtMouse()')
     positionViewAtMouse('pricecheck');
     console.timeEnd('positionViewAtMouse()')
 
-    if (!item) {
-        document.querySelector('.currency-item').style.display = 'none';
-        document.querySelector('.item').style.display = 'none';
-        document.querySelector('.item-not-found').style.display = 'flex';
+    console.time('renderItem')
+
+    const itemList = document.querySelector('.item-list');
+    const itemTemplate = document.querySelector('.templates .item-template');
+    const currencyItemTemplate = document.querySelector('.templates .currency-item-template');
+    const itemNotFoundTemplate = document.querySelector('.templates .item-not-found-template');
+
+    itemList.innerHTML = '';
+
+    if (!items.length) {
+        itemList.appendChild(itemNotFoundTemplate.cloneNode(true));
         return
     }
 
-    if (isCurrencyItem) {
-        document.querySelector('.currency-item').style.display = 'flex';
-        document.querySelector('.item').style.display = 'none';
-        document.querySelector('.item-not-found').style.display = 'none';
+    let itemsWithMatchingLevel = items.filter(v => v.levelRequired <= itemLevel)
 
-        document.getElementById('currency-item-name').innerText = item.currencyTypeName;
-        document.querySelector('.currency-item-price-pay').innerText = item.pay ? item.pay.value.toFixed(2) : 'n/a';
-        document.querySelector('.currency-item-price-receive').innerText = item.receive ? item.receive.value.toFixed(2) : 'n/a';
-        
-        if (item.icon) {
-            document.getElementById('currency-item-icon').src = item.icon;
+    items.forEach(item => {
+        let itemContainer;
+        if (item.currencyTypeName) { // is a currency item
+            itemContainer = currencyItemTemplate.cloneNode(true);
+            itemContainer.querySelector('.name').innerText = item.currencyTypeName;
+            itemContainer.querySelector('.pay').innerText = item.pay ? item.pay.value.toFixed(2) : 'n/a';
+            itemContainer.querySelector('.receive').innerText = item.receive ? item.receive.value.toFixed(2) : 'n/a';
+            if (item.icon)
+                itemContainer.querySelector('.icon').src = item.icon;
+            else
+                itemContainer.querySelector('.icon').src = '';
         } else {
-            document.getElementById('currency-item-icon').src = '';
-        }
-    } else {
-        document.querySelector('.currency-item').style.display = 'none';
-        document.querySelector('.item').style.display = 'flex';
-        document.querySelector('.item-not-found').style.display = 'none';
+            itemContainer = itemTemplate.cloneNode(true);
+            let displayName = item.baseType
+            if (item.name != item.baseType)
+                displayName = [item.name, item.baseType].filter(e => e).join(' ')
+            itemContainer.querySelector('.name').innerText = displayName;
+            itemContainer.querySelector('.chaos-value').innerText = item.chaosValue;
 
-        document.getElementById('item-name').innerText = [item.name, item.baseType].filter(e => e).join(' ');
-        document.getElementById('chaos-value').innerText = item.chaosValue;
-        if (item.icon) {
-            document.getElementById('item-icon').src = item.icon;
-        } else {
-            document.getElementById('item-icon').src = '';
+            if (item.icon)
+                itemContainer.querySelector('.icon').src = item.icon;
+            else
+                itemContainer.querySelector('.icon').src = '';
+
+            let variant = 'Normal'
+            if (item.variant)
+                variant = item.variant
+            itemContainer.querySelector('.variant').innerText = variant;
+
+            let levelRequired = 'None'
+            let isMatchingItemLevel = true
+            if (item.levelRequired) {
+                levelRequired = item.levelRequired
+                if (itemsWithMatchingLevel.indexOf(item) === -1) {
+                    isMatchingItemLevel = false
+                }
+            }
+            itemContainer.querySelector('.required-level').innerText = levelRequired;
+
+            let links = 'None'
+            if (item.links)
+                links = item.links
+            itemContainer.querySelector('.num-links').innerText = links;
+
+            let confidence = 'low'
+            if (!item.sparkline.data.length && !item.lowConfidenceSparkline.data.length) {
+                confidence = 'none'
+            } else if (item.sparkline.data.length) {
+                confidence = 'high'
+            }
+            itemContainer.querySelector('.confidence').innerText = confidence;
         }
-        if (item.variant)
-            document.getElementById('item-variant').innerText = item.variant;
-        if (item.requiredLevel)
-            document.getElementById('item-required-level').innerText = item.requiredLevel;
-    }
-    document.getElementById('dump').innerText = JSON.stringify(data, void 0, 4);
+        itemList.appendChild(itemContainer);
+    })
+
+    console.timeEnd('renderItem')
+    // document.getElementById('dump').innerText = JSON.stringify(data, void 0, 4);
 }
 
 const hydrateAllSegments = () => fetchAllSegments('Blight').then(d => DataSegments = d)
-let fetchAllSegmentsInterval = null
+let fetchAllSegmentsInterval = null;
+let doingPriceCheck = false;
 window.addEventListener('deaf_coriander-load', () => {
     addShortcut(globalShortcuts.pricecheckItem, () => {
+        if (doingPriceCheck) return;
+        doingPriceCheck = true;
         console.time('doPriceCheck()')
         doPriceCheck().then(data => {
             console.timeEnd('doPriceCheck()')
             console.time('handlePriceCheckFinished()')
             handlePriceCheckFinished(data)
+            doingPriceCheck = false;
             console.timeEnd('handlePriceCheckFinished()')
-        })
+        }).catch(() => doingPriceCheck = false)
     })
     fetchAllSegmentsInterval = setInterval(hydrateAllSegments, 1000 * 60 * 5)
     hydrateAllSegments()
-    alert('loaded')
-    let dumpToggled = false;
-    document.getElementById('show-debug-info').addEventListener('click', () =>
-        document.getElementById('dump').style.display = dumpToggled ? 'none' : 'initial'
-    );
 })
 window.addEventListener('deaf_coriander-close', () => {
     if (fetchAllSegmentsInterval) clearInterval(fetchAllSegmentsInterval)
