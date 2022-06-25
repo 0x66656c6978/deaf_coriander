@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.5",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "winhookjs": "0x66656c6978/winhookjs#master"
   }
 }
