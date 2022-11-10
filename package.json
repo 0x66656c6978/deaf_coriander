@@ -17,7 +17,7 @@
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "electron": "^6.0.9",
+    "electron": "^18.3.7",
     "electron-packager": "^14.0.6"
   },
   "dependencies": {
